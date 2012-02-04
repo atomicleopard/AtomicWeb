@@ -1,6 +1,11 @@
 /*
- * Atomic Highlight.
- * v0.1
+ * Atomic Highlight
+ * 
+ * Version: 0.1
+ * Download: 
+ * Copyright 2012, Atomic Leopard - www.atomicleopard.com
+ * License: GNU LESSER GENERAL PUBLIC LICENSE Version 3 - http://www.gnu.org/licenses/lgpl-3.0.html 
+ * 
  * Highlights text in a text area using rules provided through a callback function.
  * 
  * The callback function is provided to the options named 'highlight'. It receives a single a single argument,
@@ -35,7 +40,13 @@
         			}];
         		}
         	};
-        	options = $.extend({}, defaults, options);
+        	if(typeof(options) =="function"){
+        		options = {
+        			highlight: options
+        		}
+        	}else{
+        		options = $.extend({}, defaults, options);        		
+        	}
         	$.each(this, function(index, el){
         		var el = $(el);
         		// create a container allowing the highlight to be absolutely positioned
@@ -102,6 +113,8 @@
         		el.bind('keyup', function() {
         				var content = el.val();
         				var highlightContent = options.highlight(content);
+        				highlightContent.sort(function(a, b){ return a.start - b.start; });
+
         				for(var i = highlightContent.length - 1; i >= 0; i--){
         					var rule = highlightContent[i];
         					var start = Math.max(0, rule.start);
@@ -134,7 +147,8 @@
 	        			'position': 'relative'
 	                })
 	                .wrap(container)
-	                .before(background);
+	                .before(background)
+	                .keyup();
         	});
         }
     });
