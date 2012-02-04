@@ -1,0 +1,60 @@
+@import "reset.less";
+@import "base.less";
+@import "base2.less";
+@import "scaffolding.less";
+
+
+
+@colour1: #EFFFCD;
+@colour2: #DCE9BE;
+@colour3: #555152;
+@colour4: #2E2633;
+@colour5: #99173C;
+
+@backgroundPage: #333;
+
+.page .centred();
+
+body {
+	> header {
+		margin-top: 3em;
+		//.background.gradient.linear .vertical(@colour3, @colour4);
+	}
+	> section {
+		padding-top: 3em;
+	}
+}
+h1 > a{
+	.linkPlain;
+}
+
+dl {
+	display: block;
+	margin: 16px 4px;
+}
+
+dt {
+	.inline-block();
+	margin-right: 12px;
+	a {
+		.linkPlain;
+	}
+}
+dd {
+	.inline-block();
+	vertical-align: bottom;
+}
+
+.getit {
+	> div {
+		width: 400px;
+		.inline-block();
+	}
+}
+textarea {
+	width: 400px;
+	height: 200px;
+}
+.download {
+	float: right;
+}

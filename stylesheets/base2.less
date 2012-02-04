@@ -1,0 +1,220 @@
+@baseFontSize: 1em;
+@baseLinHeight: 1em;
+
+@textColour: #2B2726;
+@linkColour: #3A89C9;
+@linkPlainColour: @textColour;
+@borderColour: #064780;
+
+@actionColour: #3A89C9;
+
+@backgroundContent: #FFF;
+@backgroundPage: #FFF;
+@backgroundAlternate: #EDEDF4; 
+
+@infoColour: #0B61A4;
+@infoBackgroundColour: lighten(@infoColour, 60%);
+@alertColour: #9E9857;
+@alertBackgroundColour: #FFFABF;
+@successColour: #008500;
+@successBackgroundColour: lighten(@successColour, 65%);
+@errorColour: #A2000C;
+@errorBackgroundColour: lighten(@errorColour, 65%);
+
+body {
+	color: @textColour;
+}
+
+a {
+	color: @linkColour;
+	text-decoration: none;
+	&:hover {
+		color: @linkColour;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
+
+.linkPlain() { // mixin to mark a link as non-styled.
+	color: @linkPlainColour;
+	&:hover {
+		color: @linkPlainColour;
+	}
+}
+
+button {
+	.button;
+}
+hr {
+	width: 80%;
+	margin: 8px auto;
+	border: 0;
+	border-bottom: 1px solid @borderColour;
+}
+input {
+	color: @textColour;
+	margin: 4px 6px; 
+	&[readonly='readonly']{
+		color: lighten(@textColour, 60%);
+	}
+}
+select {
+	color: @textColour;
+	margin: 4px 6px; 
+}
+
+textarea{
+	margin: 4px 6px;
+	border: 1px solid @borderColour;
+	color: @textColour;
+	&[readonly='readonly']{
+		color: lighten(@textColour, 60%);
+	}
+}
+
+pre {
+	color: textColour;
+	padding: 15px;
+	border: 1px solid @borderColour;
+	background: @backgroundAlternate;
+}
+code {
+	color: textColour;
+	padding: 15px;
+	border: 1px solid @borderColour;
+	background: @backgroundAlternate;
+}
+
+
+h1 {
+	font-size: 3 * @baseFontSize;
+}
+
+h2  {
+	font-size: 2.4 * @baseFontSize;
+	font-weight: bold;
+}
+
+h3 {
+	font-size: 1.8 * @baseFontSize;
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 1.2 * @baseFontSize;
+	font-weight: bold;
+}
+
+h5 {
+	font-size: @baseFontSize;
+	font-weight: bold;
+}
+
+h6 {
+	font-size: 0.8 * @baseFontSize;
+	font-weight: normal;
+}
+
+table {
+	@tableBorder: 1px solid @borderColour;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	thead{
+		border: @tableBorder;
+	}
+	tbody {
+		border: @tableBorder;
+	 	> tr{
+	 		border-bottom: @tableBorder;
+	 		&:hover {
+				background-color: #EEF;
+			}
+		}
+	}
+	th {
+		text-align: left;
+		font-weight: bold;
+		.background.gradient.linear .vertical(#EEE, #DDD);
+		.effects .gloss	;
+		padding: 4px 8px;
+	}
+	td {
+		padding: 4px 8px;
+		text-align: left;
+	}
+}
+
+
+/** Common stylings */
+.required {
+	font-weight: bold;
+	color: @errorColour;
+}
+
+.info {
+	.panel(@infoColour, @infoBackgroundColour);
+}
+.alert {
+	.panel(@alertColour, @alertBackgroundColour);
+}
+.success {
+	.panel(@successColour, @successBackgroundColour);
+}
+.error {
+	.panel(@errorColour, @errorBackgroundColour);
+}
+.panel(@foreground, @background){
+	color: @foreground;
+	background-color: @background;
+	border: 1px solid @foreground;
+	padding: 4px 8px;
+	margin: 4px 8px;
+}
+
+.button {
+	padding: 8px 40px;
+	border-bottom: 1px solid #E3E3E3;
+	background-color: @actionColour;
+	
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	text-decoration: none;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+	
+	-webkit-appearance:none;
+	
+	&:hover {
+		text-decoration: underline;
+	}
+	&.small {
+		padding: 2px 10px 4px 10px;
+	}
+}
+
+
+.whatIsThis {
+	font-size: 0.6em;
+}
+.dialog {
+	.dialog(400px);
+}
+.dialog(@width: 400px) {
+	display: none;
+	position: fixed;
+	width: @width;
+	min-height: 200px;
+	left: 50%;
+	top: 35%;
+	margin: 0 0 0 -@width/2;
+	
+	background: #FFF;
+	border: 1px solid #EDECEC;
+	padding: 12px;
+	
+	/* IE6 specific css for the centering of the modal - taken from http://mauzon.com/an-ultimate-solution-for-ie6-position-fixed-problem */
+    *position: absolute;
+    *filter: ~"alpha(opacity = 100)";
+    *margin-top: 0;
+    *top: ~"expression(eval(document.compatMode && document.compatMode == 'CSS1Compat') ? documentElement.scrollTop +(( documentElement.clientHeight-this.clientHeight )/2 ) : document.body.scrollTop +(( document.body.clientHeight-this.clientHeight )/2 ) )";
+}

@@ -1,0 +1,238 @@
+/*
+ * Atomic Style Library
+ * 
+ * Version: 0.1
+ * Download: 
+ * Copyright 2012, Atomic Leopard - www.atomicleopard.com
+ * License: GNU LESSER GENERAL PUBLIC LICENSE Version 3 - http://www.gnu.org/licenses/lgpl-3.0.html 
+ *
+ * This library defines a set of useful style resources for use in fast generation
+ * of well layed out semantic HTML.
+ * By leveraging Less mixins rather than class name composition in html, we
+ * can gain the advantages of aggregate styles without sacrificing semantic html.  
+ */
+ 
+ /**
+ * Inline block
+ * Status: FF+, Webkit+, IE7-, IE8-, IE9-, IE10-, Opera-
+ */ 
+.inline-block() {
+	display: inline-block;
+	vertical-align: top;
+    *zoom: 1;
+	*display: inline;
+}
+
+/**
+* Ah - the good old clear. This is not a mixin because of the
+* prolific use of the clear class on most webpages.
+*/
+.clear {
+	zoom:1; /* For IE 6/7 (trigger hasLayout) */
+	&:before,
+	&:after {
+	    content:"";
+	    display:table;
+	}
+	&:after {
+	    clear:both;
+	}
+}
+
+/**
+* Controls what the user may select (i.e. highlight and copy)
+* Status: FF+, Webkit+, IE7-, IE8-, IE9-, IE10-, Opera-
+* Options:
+* none
+*/
+.user-select(@policy){
+	-webkit-user-select: @policy;
+	-moz-user-select: @policy;
+	-khtml-user-select: @policy;
+	-o-user-select: @policy;
+	user-select: @policy;
+}
+.transform(@transformation){
+	-webkit-transform: @transformation;
+	-moz-transform: @transformation;
+	transform: @transformation;
+}
+.border-radius(@radius){
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+.border-top-radius(@radius){
+	.border-top-right-radius(@radius);
+	.border-top-left-radius(@radius);
+}
+.border-bottom-radius(@radius){
+	.border-bottom-right-radius(@radius);
+	.border-bottom-left-radius(@radius);
+}
+.border-left-radius(@radius){
+	.border-top-left-radius(@radius);
+	.border-bottom-left-radius(@radius);
+}
+.border-right-radius(@radius){
+	.border-top-right-radius(@radius);
+	.border-bottom-right-radius(@radius);
+}
+.border-bottom-radius(@radius){
+	.border-bottom-right-radius(@radius);
+	.border-bottom-left-radius(@radius);
+}
+.border-top-right-radius(@radius){
+	-moz-border-radius-topright: @radius;
+	-khtml-border-radius-topright: @radius;
+	-webkit-border-top-right-radius: @radius;
+	border-top-right-radius: @radius;
+}
+.border-top-left-radius(@radius){
+	-moz-border-radius-topleft: @radius;
+	-khtml-border-radius-topleft: @radius;
+	-webkit-border-top-left-radius: @radius;
+	border-top-left-radius: @radius;
+}
+.border-bottom-left-radius(@radius){
+	-moz-border-radius-bottomleft: @radius;
+	-khtml-border-radius-bottomleft: @radius;
+	-webkit-border-bottom-left-radius: @radius;
+	border-top-bottom-radius: @radius;
+}
+.border-bottom-right-radius(@radius){
+	-moz-border-radius-bottomright: @radius;
+	-khtml-border-radius-bottomright: @radius;
+	-webkit-border-bottom-right-radius: @radius;
+	border-bottom-right-radius: @radius;
+}
+.transition(@transition){
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	transition: @transition;
+}
+.box-shadow(@shadow1) {
+	-webkit-box-shadow: @shadow1; 
+	-moz-box-shadow: @shadow1;
+	box-shadow: @shadow1;
+}
+.box-shadow(@shadow1, @shadow2) {
+	-webkit-box-shadow: @shadow1, @shadow2; 
+	-moz-box-shadow: @shadow1, @shadow2;
+	box-shadow: @shadow1, @shadow2;
+}
+.box-shadow(@shadow1, @shadow2, @shadow3) {
+	-webkit-box-shadow: @shadow1, @shadow2, @shadow3; 
+	-moz-box-shadow: @shadow1, @shadow2, @shadow3;
+	box-shadow: @shadow1, @shadow2, @shadow3;
+}
+.box-shadow(@shadow1, @shadow2, @shadow3, @shadow4) {
+	-webkit-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4; 
+	-moz-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4;
+	box-shadow: @shadow1, @shadow2, @shadow3, @shadow4;
+}
+.box-shadow(@shadow1, @shadow2, @shadow3, @shadow4, @shadow5) {
+	-webkit-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5; 
+	-moz-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5;
+	box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5;
+}
+
+/**
+* Common effects library
+*/
+@shadow: rgba(0, 0, 0, 40%);
+.effects(){
+	.gloss {
+		.effects .gloss(rgba(255,255,255, 1), 1em);
+	}
+	.gloss  (@mainColor){
+		.effects .gloss(@mainColor, 1em);
+	}
+	.gloss (@mainColor, @height) {
+		.effects .gloss(@mainColor, lighten(@mainColor, 30%), @height);
+	}
+	.gloss (@mainColor, @glossColor, @height) {
+		.box-shadow( 
+	    	inset 0px (@height/2) (@height) fade(@mainColor, 20%),
+			inset 0px (@height/4) (@height/6) fade(@glossColor, 40%),
+			inset 0px -(@height/2) -(@height) fade(@mainColor, 20%)
+		); 
+	}
+	
+	.dropShadow {
+		.effects .dropShadow(@shadow);
+	}
+	.dropShadow(@shadow) {
+		.box-shadow(4px 4px 4px @shadow);
+	}
+	.outerGlow(@color){ // untested
+		.box-shadow(@color 0 0 .15em 0.06em);
+	}
+	
+	
+	&.text {
+		.glow(@colour){
+			.effects.text .glow(@colour, @colour);
+		}
+		.glow(@colour, @colour2){
+			text-shadow: 0 0 0.1em @colour2, 0 0 0.2em @colour2, 0 0 0.3em @colour, 0 0 0.4em @colour; 
+		}
+     }
+}
+
+.background() {
+	&.gradient {
+		&.linear {
+			.vertical(@colour){
+				.background.gradient.linear .vertical(darken(@colour, 10%), lighten(@colour, 10%));
+			}
+			.vertical(@fromColor, @toColor){
+				background-colour: @fromColor;
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@fromColor), to(@toColor)); 
+				background: -webkit-linear-gradient(top, @toColor, @fromColor); 
+				background: -moz-linear-gradient(top, @toColor, @fromColor); 
+				background: -ms-linear-gradient(top, @toColor, @fromColor); 
+				background: -o-linear-gradient(top, @toColor, @fromColor);
+			}
+			.horizontal(@colour){
+				.background.gradient.linear .horizontal(darken(@colour, 10%), lighten(@colour, 10%));
+			}
+			.horizontal(@fromColor, @toColor){
+				background-colour: @fromColor;
+				background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(@fromColor), to(@toColor)); 
+				background: -webkit-linear-gradient(left, @toColor, @fromColor); 
+				background: -moz-linear-gradient(left, @toColor, @fromColor); 
+				background: -ms-linear-gradient(left, @toColor, @fromColor); 
+				background: -o-linear-gradient(left, @toColor, @fromColor);
+			}
+		}
+		.radial(@fromColour){
+			.background.gradient .radial(@fromColour, darken(@fromColour, 20%));
+		}
+		.radial(@fromColour, @toColour){
+			.background.gradient .radial(@fromColour, @toColour, 50%, 50%);
+		}
+		.radial(@fromColour, @toColour, @urlComponent){
+			.background.gradient .radial(@fromColour, @toColour, 50%, 50%, @urlComponent);
+		}
+		.radial(@fromColour, @toColour, @x, @y){
+			background-color: @fromColour;
+			background-image: -moz-radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+			background-image: -webkit-radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+			background-image: -o-radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+			background-image: -ms-radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+			background-image: radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+		}
+		.radial(@url, @fromColour, @toColour, @x, @y){
+			background-color: @fromColour;
+			background-image: @url, -moz-radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+			background-image: @url, -webkit-radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+			background-image: @url, -o-radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+			background-image: @url, -ms-radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+			background-image: @url, radial-gradient(@x @y, ellipse closest-side, @fromColour, @toColour 100%);
+		}
+	}
+	.neutral(@backgroundColour) {
+		.background.gradient .radial(@backgroundColour, darken(@backgroundColour, 20%), 50%, 65%);
+	}
+}
