@@ -1,8 +1,8 @@
 /*
- * Atomic Highlight
+ * Atomic Highlight - part of the Atomic Web collection
  * 
- * Version: 0.1
- * Download: 
+ * Version: 0.2
+ * Download: https://raw.github.com/atomicleopard/AtomicWeb/master/javascript/ 
  * Copyright 2012, Atomic Leopard - www.atomicleopard.com
  * License: GNU LESSER GENERAL PUBLIC LICENSE Version 3 - http://www.gnu.org/licenses/lgpl-3.0.html 
  * 
@@ -12,12 +12,15 @@
  * which is the content of the textarea to be highlighed. It returns an array of objects defining highlighting rules.
  * Each rule object has the format:
  * {
- * 	start: <index>,
+ *  start: <index>,
  *  end: <index>,
  *  css: { <jQuery Css rules> }
  * }
- * The rules *must* be returned in order from start to end, and blocks cannot overlap. Strange things will happen otherwise.
- * Be warned that the css rules provided may result in the highlighter failing. In general, stick to background colourings.
+ * Blocks defined by  start-end cannot overlap. Strange things will happen if they do.
+ * Be warned that although the css argument will receive the full set of css arguments 
+ * which jQuery can apply, the css rules provided may result in the highlighter failing. 
+ * In general, stick to the background css values, background, background-color and background-image.
+ * See below for more detail
  * 
  * How it works:
  * Your text area will be wrapped in a div, and at the same location a new div will be located. It duplicates the text and 
