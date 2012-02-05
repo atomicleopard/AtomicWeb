@@ -9,17 +9,28 @@
 @colour4: #2E2633;
 @colour5: #99173C;
 
-@backgroundPage: #333;
+@backgroundPage: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGElEQVQYlWNgIAIcPnzYeFQRPRUxMDAAAPAfGNkzor26AAAAAElFTkSuQmCC) repeat #666;
 
 .page .centred();
 
 body {
 	> header {
 		margin-top: 3em;
-		//.background.gradient.linear .vertical(@colour3, @colour4);
+		.box-shadow(
+			@shadow -0.5em 0 0.5em,
+			@shadow 0.5em -0.5em 0.5em
+		);
 	}
 	> section {
 		padding-top: 3em;
+		.box-shadow(
+			@shadow -0.5em 0.5em 0.5em,
+			@shadow 0.5em 0.5em 0.5em
+		);
+		
+		&:last-child{
+			margin-bottom: 4em;
+		}
 	}
 }
 h1 > a{
@@ -44,9 +55,14 @@ dd {
 }
 
 .getit {
+	border: 1px dashed @borderColour;
+	margin: 1em;
+	
 	> div {
 		width: 400px;
 		.inline-block();
+		margin: 1em;
+		font-size: 0.9em;
 	}
 }
 textarea {
