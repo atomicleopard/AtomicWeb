@@ -1,8 +1,8 @@
 /*
  * Atomic Highlight - part of the Atomic Web collection
  * 
- * Version: 0.2
- * Download: https://raw.github.com/atomicleopard/AtomicWeb/master/javascript/ 
+ * Version: 0.3
+ * Download latest: https://raw.github.com/atomicleopard/AtomicWeb/master/javascript/ 
  * Copyright 2012, Atomic Leopard - www.atomicleopard.com
  * License: GNU LESSER GENERAL PUBLIC LICENSE Version 3 - http://www.gnu.org/licenses/lgpl-3.0.html 
  * 
@@ -14,8 +14,13 @@
  * {
  *  start: <index>,
  *  end: <index>,
- *  css: { <jQuery Css rules> }
+ *  css: { <jQuery Css rules> },
+ *  class: <class names>
  * }
+ * 
+ * 'css' and 'class' are both optional, the classes provided will be applied to the highlighting elements, and the css properties will
+ * be directly applied to the highlight elements afterwards.
+ *  
  * Blocks defined by  start-end cannot overlap. Strange things will happen if they do.
  * Be warned that although the css argument will receive the full set of css arguments 
  * which jQuery can apply, the css rules provided may result in the highlighter failing. 
@@ -125,7 +130,8 @@
         					var len = end - start;
         					var wrappedContent = content.substr(start, len);
         					var newSpan = span.clone()
-        						.css(rule.css)
+        						.addClass(rule.class)
+        						.css($.extend({}, rule.css))
         						.html(wrappedContent)
         						.wrap("<div>")
         						.parent()
