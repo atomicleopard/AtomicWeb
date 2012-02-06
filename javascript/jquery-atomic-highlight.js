@@ -1,7 +1,7 @@
 /*
  * Atomic Highlight - part of the Atomic Web collection
  * 
- * Version: 0.3
+ * Version: 0.4
  * Download latest: https://raw.github.com/atomicleopard/AtomicWeb/master/javascript/ 
  * Copyright 2012, Atomic Leopard - www.atomicleopard.com
  * License: GNU LESSER GENERAL PUBLIC LICENSE Version 3 - http://www.gnu.org/licenses/lgpl-3.0.html 
@@ -118,7 +118,7 @@
 	        		})
 	        		.html(highlight);
         		
-        		el.bind('keyup', function() {
+        		el.bind('keyup change', function() {
         				var content = el.val();
         				var highlightContent = options.highlight(content);
         				highlightContent.sort(function(a, b){ return a.start - b.start; });
