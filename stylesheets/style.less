@@ -59,10 +59,14 @@ dd {
 	margin: 1em;
 	
 	> div {
-		width: 400px;
+		width: 420px;
 		.inline-block();
-		margin: 1em;
+		margin: 1em 0em 1em 1em;
 		font-size: 0.9em;
+
+		&:first-child {
+			margin-top: 3em;
+		}
 	}
 }
 textarea {
