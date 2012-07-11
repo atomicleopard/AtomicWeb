@@ -1,8 +1,8 @@
 /*
  * Atomic Placeholder - part of the Atomic Web collection
  * 
- * Version: 1.0
- * Download latest: https://raw.github.com/atomicleopard/AtomicWeb/master/javascript/ 
+ * Version: 1.1
+ * Download latest: https://raw.github.com/atomicleopard/AtomicWeb/master/javascript/jquery-atomic-placeholder.js 
  * Copyright 2012, Atomic Leopard - www.atomicleopard.com
  * License: GNU LESSER GENERAL PUBLIC LICENSE Version 3 - http://www.gnu.org/licenses/lgpl-3.0.html
  * 
@@ -68,7 +68,7 @@
 				var el= $(el);
 				var text = el.data("$.placeholder.text");
 				var cssClass = el.data("$.placeholder.class");
-				if(el.val() == ""){
+				if(el.val() == "" && !el.is(":focus")){
 					el.addClass(cssClass);
 					el.val(text);
 				}
